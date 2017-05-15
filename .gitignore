@@ -40,9 +40,9 @@ jspm_packages
 node_modules/
 dist/
 npm-debug.log
-platforms/
-plugins/
-www/
-src/static/bcz/
+#platforms/
+#plugins/
+#www/
+#src/static/bcz/
 #src/assets/json/
 

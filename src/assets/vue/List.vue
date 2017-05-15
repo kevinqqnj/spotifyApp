@@ -1,57 +1,53 @@
- <div class="navbar">
-            <div class="navbar-inner">
-                <div class="left"><a href="#" class="back link"> <i class="icon icon-back"></i><span>Back</span></a></div>
-                <div class="center sliding">Results</div>
-                <div class="right">
-                    <a href="#" class="link icon-only open-panel"> <i class="icon icon-bars"></i></a>
-                </div>
-            </div>
-        </div>
-
-        <div class="page" data-page="list">
-            <form class="searchbar searchbar-init" data-search-list=".list-block-search" data-search-in=".item-title"
-                  data-searchbar-found=".searchbar-found" data-searchbar-not-found=".searchbar-not-found">
-                <div class="searchbar-input">
-                    <input type="search" placeholder="Search">
-                    <a href="#" class="searchbar-clear"></a>
-                </div>
-                <a href="#" class="searchbar-cancel">Cancel</a>
-            </form>
-            <div class="searchbar-overlay"></div>
-            <div class="page-content">
-                <!-- no result -->
-                <div class="content-block searchbar-not-found">
-                    Nothing found
-                </div>
-
-                <div id="mediaList" class="list-block media-list list-block-search searchbar-found">
-                    <ul>
-                        {{#each this}}
-                        <li class="swipeout">
-                            <div class="swipeout-content">
-                                <a href='#' class="item-content item-link">
-                                    <div class="item-media">
-                                        <img data-src="{{album.images[2].url}}" class="lazy">
-                                    </div>
-                                    <div class="item-inner">
-                                        <div class="item-title-row">
-                                            <div class="item-title">{{name}}</div>
-                                        </div>
-                                        <div class="item-subtitle">{{artists[0].name}}</div>
-                                        <div class="item-text">{{album.name}}</div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="swipeout-actions-right">
-                                <a href="#" class="bg-orange favorite" data-item="{{@index}}"><i class="icon fa fa-star fa-2x"></i></a>
-                                <a href="#" class="bg-blue share" data-item="{{@index}}"><i class="icon fa fa-share fa-2x"></i></a>
-                            </div>
-                            <div class="swipeout-actions-left">
-                                <a href="#" class="bg-green preview" data-item="{{@index}}"><i class="icon fa fa-play fa-2x"></i></a>
-                            </div>
-                        </li>
-                        {{/each}}
-                    </ul>
-                </div>
-            </div>
-        </div>
+<template>
+  <div id="list">
+    <f7-navbar>
+      <f7-nav-left back-link="Back" sliding></f7-nav-left>
+      <f7-nav-center sliding>Results</f7-nav-center>
+      <f7-nav-right>
+        <f7-link icon="icon-bars" open-panel=""></f7-link>
+      </f7-nav-right>
+    </f7-navbar>
+    <f7-page name="list">
+      <!-- Search bar -->
+      <f7-searchbar cancel-link="Cancel" search-list="#mediaList" placeholder="Search in items" :clear-button="true" >
+      </f7-searchbar>
+      <!-- Will be visible if there is no any results found, defined by "searchbar-not-found" class -->
+      <f7-list class="searchbar-not-found">
+        <f7-list-item title="Nothing found"></f7-list-item>
+      </f7-list>
+      <!-- Search-through list -->
+      <f7-list class="searchbar-found" media-list id="mediaList">
+        <f7-list-item swipeout v-for="(item, key, index) in searchTracks" :key="item.id" link="#" :media="'<img src=' + item.album.images[2].url +' >'" :title="item.name" :subtitle="item.artists[0].name" :text="item.album.name">
+          <f7-swipeout-actions right>
+            <f7-swipeout-button>
+              <a class="bg-orange favorite" :data-item="index"><i class="icon fa fa-star fa-2x"></i></a>
+              <a href="#" class="bg-blue share" :data-item="index"><i class="icon fa fa-share fa-2x"></i></a>
+            </f7-swipeout-button>
+          </f7-swipeout-actions>
+          <f7-swipeout-actions left>
+            <f7-swipeout-button>
+              <a href="#" class="bg-green preview" :data-item="index"><i class="icon fa fa-play fa-2x"></i></a>
+            </f7-swipeout-button>
+          </f7-swipeout-actions>
+        </f7-list-item>
+      </f7-list>
+    </f7-page>
+  </div>
+</template>
+<script>
+import store from '../../store.js'
+export default {
+  name: 'list',
+  data() {
+    return {
+      searchTracks: [],
+    }
+  },
+  mounted() {
+    window.Dom7(document).on('deviceready', () => {
+      console.log("List Page is ready!");
+      this.searchTracks = store.searchTracks;
+    });
+  }
+}
+</script>

@@ -25,6 +25,7 @@
               <f7-list-item media="<i class='icon fa fa-list-ol'></i>">
                 <f7-label>Max Results</f7-label>
                 <f7-input type="range" id="numResults" min="0" max="50" step="1" v-model="sliderVal" />
+                <span>&nbsp;&nbsp;</span>
                 <f7-input type="text" id="sliderVal" disabled :value="sliderVal" />
               </f7-list-item>
             </f7-list>
@@ -52,6 +53,7 @@
   </div>
 </template>
 <script>
+import store from './store.js';
 export default {
   name: 'Index',
   data() {
@@ -82,7 +84,9 @@ export default {
           dataType: 'json',
           url: url,
           success: function(resp) {
-            window.f7.alert("Number of results " + resp.tracks.items.length);
+            // window.f7.alert("Number of results " + resp.tracks.items.length);
+            console.log(resp.tracks.items);
+            store.searchTracks = resp.tracks.items;
             window.f7.mainView.router.load({
               url: '/list/',
               context: resp.tracks.items
