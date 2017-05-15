@@ -1,6 +1,26 @@
 <template>
   <!-- App -->
   <div id="app">
+    <!-- Statusbar -->
+    <f7-statusbar></f7-statusbar>
+    <!-- Left Panel -->
+    <f7-panel left reveal layout="dark">
+      <f7-view id="left-panel-view" navbar-through :dynamic-navbar="true">
+        <f7-navbar title="Left Panel"></f7-navbar>
+        <f7-pages>
+          <f7-page>
+            <f7-list>
+              <f7-list-item media="<i class='icon fa fa-cog'></i>" @click="onSetting" title="Settings">
+              </f7-list-item>
+              <f7-list-item media="<i class='icon fa fa-star'></i>" @click="onFavorite" title="Favorites">
+              </f7-list-item>
+              <f7-list-item media="<i class='icon fa fa-info-circle'></i>" @click="onAbout" title="About">
+              </f7-list-item>
+            </f7-list>
+          </f7-page>
+        </f7-pages>
+      </f7-view>
+    </f7-panel>
     <f7-views>
       <!-- Main view-->
       <f7-view main :dynamicNavbar="true">
@@ -89,13 +109,22 @@ export default {
             window.f7.mainView.router.load({
               url: '/list/',
               context: resp.tracks.items
-         });
+            });
           },
           error: function(xhr) {
             console.log("Error on ajax call " + xhr);
           }
         });
       }
+    },
+    onSetting() {
+      window.f7.alert('Show Settings');
+    },
+    onFavorite() {
+      window.f7.alert('Show my favorites');
+    },
+    onAbout() {
+      window.f7.alert('Show About');
     }
   }
 }

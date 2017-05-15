@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.phonegap.helloworld" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.phonegap.Spotify" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <hook src="hooks/hookers.js" type="before_prepare"/>
     <hook src="hooks/beforedep.js" type="before_deploy"/>
-    <name>helloworld</name>
+    <name>Spotify</name>
     <description>
         Brand new cordova project!
     </description>
@@ -18,6 +18,7 @@
     <allow-intent href="sms:*"/>
     <allow-intent href="mailto:*"/>
     <allow-intent href="geo:*"/>
+    <preference name="fullscreen" value="true"/>
     <platform name="android">
         <allow-intent href="market:*"/>
     </platform>
@@ -26,4 +27,6 @@
         <allow-intent href="itms-apps:*"/>
     </platform>
     <engine name="browser" spec="~4.1.0"/>
-<allow-navigation href="*"/></widget>
+    <allow-navigation href="*"/>
+    <engine name="android" spec="~6.1.2"/>
+</widget>
