@@ -9,7 +9,7 @@
     </f7-navbar>
     <f7-block-title>Track Info</f7-block-title>
     <f7-list>
-      <f7-list-item :media="'<img src=' + searchTracks[mediaId].album.images[2].url +' >'" :title="searchTracks[mediaId].name">
+      <f7-list-item :media="'<img src=' + searchTracks[mediaId].album.images[1].url +' class=detail>'" :title="searchTracks[mediaId].name">
       </f7-list-item>
       <f7-list-item>
         <f7-label>Type</f7-label>
@@ -29,18 +29,27 @@
       <f7-list-item>
         <f7-label>Popularity Rank</f7-label>
         <f7-input type="range" min="0" max="100" step="1" v-model="sliderVal" disabled/>
-        <span>&nbsp;&nbsp;</span>
-        <f7-input type="text" disabled value="90" />
+        <f7-input type="text" disabled value="90" class="rangeVal" />
       </f7-list-item>
     </f7-list>
     <f7-block-title>Preview</f7-block-title>
     <f7-block inset>
       <f7-block inner>
-        <div id="previewAudio">
+        <div id="previewAudio" align="center">
           <audio controls preload :src="searchTracks[mediaId].preview_url"></audio>
         </div>
       </f7-block>
     </f7-block>
+    <f7-list>
+      <f7-list-item class="bottom">
+        <a href="#" class="item-media link favorite"><i class="icon fa fa-star fa-2x"></i> </a>
+        <div class="item-title">
+          <a :href="searchTracks[mediaId].external_urls.spotify" class="link external">Open in Spotify</a>
+        </div>
+        <a href="#" class="share item-media link"><i class="icon fa fa-external-link fa-2x"></i></a>
+      </f7-list-item>
+    </f7-list>
+
   </f7-page>
 </template>
 <script>

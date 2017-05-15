@@ -25,8 +25,7 @@
               <f7-list-item media="<i class='icon fa fa-list-ol'></i>">
                 <f7-label>Max Results</f7-label>
                 <f7-input type="range" id="numResults" min="0" max="50" step="1" v-model="sliderVal" />
-                <span>&nbsp;&nbsp;</span>
-                <f7-input type="text" id="sliderVal" disabled :value="sliderVal" />
+                <f7-input type="text" id="sliderVal" disabled :value="sliderVal" class="rangeVal" />
               </f7-list-item>
             </f7-list>
             <f7-block>
