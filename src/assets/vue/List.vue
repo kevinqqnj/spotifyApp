@@ -9,7 +9,7 @@
     </f7-navbar>
     <f7-page name="list">
       <!-- Search bar -->
-      <f7-searchbar cancel-link="Cancel" search-list="#mediaList" placeholder="Search in items" :clear-button="true" >
+      <f7-searchbar cancel-link="Cancel" search-list="#mediaList" placeholder="Search in items" :clear-button="true">
       </f7-searchbar>
       <!-- Will be visible if there is no any results found, defined by "searchbar-not-found" class -->
       <f7-list class="searchbar-not-found">
@@ -17,7 +17,7 @@
       </f7-list>
       <!-- Search-through list -->
       <f7-list class="searchbar-found" media-list id="mediaList">
-        <f7-list-item swipeout v-for="(item, key, index) in searchTracks" :key="item.id" link="#" :media="'<img src=' + item.album.images[2].url +' >'" :title="item.name" :subtitle="item.artists[0].name" :text="item.album.name">
+        <f7-list-item swipeout v-for="(item, index) in searchTracks" :key="item.id" :link="'/media/'+index+'/'" :media="'<img src=' + item.album.images[2].url +' >'" :title="item.name" :subtitle="item.artists[0].name" :text="item.album.name">
           <f7-swipeout-actions right>
             <f7-swipeout-button>
               <a class="bg-orange favorite" :data-item="index"><i class="icon fa fa-star fa-2x"></i></a>

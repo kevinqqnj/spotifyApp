@@ -14,5 +14,9 @@ export default [
   {
     path: '/list/',
     component: require('./assets/vue/List.vue')
+  },
+  {
+    path: '/media/:mediaId/',
+    component: require('./assets/vue/Media.vue')
   }
 ]
