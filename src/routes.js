@@ -10,5 +10,9 @@ export default [
   {
     path: '/dynamic-route/blog/:blogId/post/:postId/',
     component: require('./assets/vue/pages/dynamic-route.vue')
+  },
+  {
+    path: '/list/',
+    component: require('./assets/vue/List.vue')
   }
 ]

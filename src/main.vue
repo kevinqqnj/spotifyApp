@@ -83,6 +83,10 @@ export default {
           url: url,
           success: function(resp) {
             window.f7.alert("Number of results " + resp.tracks.items.length);
+            window.f7.mainView.router.load({
+              url: '/list/',
+              context: resp.tracks.items
+         });
           },
           error: function(xhr) {
             console.log("Error on ajax call " + xhr);
