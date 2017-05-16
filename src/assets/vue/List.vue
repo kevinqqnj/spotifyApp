@@ -16,7 +16,7 @@
     </f7-list>
     <!-- Search-through list -->
     <f7-list class="searchbar-found" media-list id="mediaList">
-      <f7-list-item swipeout v-for="(item, index) in searchTracks" :key="item.id" :link="'/media/'+index+'/'" :media="'<img src=' + item.album.images[2].url +' >'" :title="item.name" :subtitle="'<span class=singerPrex>by </span>'+item.artists[0].name" :text="item.album.name">
+      <f7-list-item swipeout v-for="(item, index) in searchTracks" :key="item.id" :link="'/media/'+index+'/'" :media="'<img data-src=' + item.album.images[2].url +' class=lazy>'" :title="item.name" :subtitle="'<span class=singerPrex>by </span>'+item.artists[0].name" :text="item.album.name">
         <f7-swipeout-actions right>
           <f7-swipeout-button class="bg-orange">
             <a class="bg-orange favorite" @click="addFavorite(index)"><i class="icon fa fa-star fa-2x"></i></a>
@@ -71,6 +71,7 @@ export default {
     },
     share(index) {
       var item = this.searchTracks[index];
+      console.log(item);
       if (window.plugins && window.plugins.socialsharing) {
         window.plugins.socialsharing.share("Hey! My new favorite song is " + item.name + " check it out!",
           'Check this out', item.album.images[2].url, item.preview_url,

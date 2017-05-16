@@ -19,4 +19,4 @@ phonegap run browser -- --lr
 Download this git, and replace /src/ directory, and /config.xml
 
 #### Intruduction:
-(Ch)
+[Framework7+Vue.js Spotify播放器 - 实例详解](http://www.jianshu.com/p/976d34fcd77e)

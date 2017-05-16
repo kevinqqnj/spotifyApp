@@ -9,7 +9,7 @@
     </f7-navbar>
     <f7-block-title>Track Info</f7-block-title>
     <f7-list>
-      <f7-list-item :media="'<img src=' + searchTracks[mediaId].album.images[1].url +' class=detail>'" :title="searchTracks[mediaId].name">
+      <f7-list-item :media="'<img src=' + searchTracks[mediaId].album.images[0].url +' width=90% >'" :title="searchTracks[mediaId].name">
       </f7-list-item>
       <f7-list-item>
         <f7-label>Type</f7-label>

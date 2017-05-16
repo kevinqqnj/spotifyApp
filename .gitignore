@@ -37,11 +37,13 @@ jspm_packages
 .node_repl_history
 
 .DS_Store
+hooks/
 node_modules/
 dist/
 npm-debug.log
 platforms/
 plugins/
+webpack/
 #www/
 #src/static/bcz/
 #src/assets/json/
