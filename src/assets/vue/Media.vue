@@ -46,7 +46,7 @@
         <div class="item-title">
           <a :href="searchTracks[mediaId].external_urls.spotify" class="link external">Open in Spotify</a>
         </div>
-        <a href="#" class="share item-media link"><i class="icon fa fa-external-link fa-2x"></i></a>
+        <a class="share item-media link" @click="share"><i class="icon fa fa-external-link fa-2x"></i></a>
       </f7-list-item>
     </f7-list>
 
@@ -64,6 +64,22 @@ export default {
   },
   mounted() {
     this.searchTracks = store.searchTracks;
+  },
+  methods: {
+    share() {
+      var item = this.searchTracks[this.mediaId];
+      console.log(item);
+      if (window.plugins && window.plugins.socialsharing) {
+        window.plugins.socialsharing.share("Hey! My new favorite song is " + item.name + ", check it out!",
+          'Check this out', item.album.images[2].url, item.preview_url,
+          function() {
+            console.log("Share Success")
+          },
+          function(error) {
+            console.log("Share fail: " + error)
+          });
+      } else window.f7.alert("Share plugin not found");
+    }
   }
 }
 </script>

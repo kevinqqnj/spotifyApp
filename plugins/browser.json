@@ -9,7 +9,23 @@
     "installed_plugins": {
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "com.phonegap.helloworld"
+        },
+        "cordova-plugin-media": {
+            "PACKAGE_NAME": "com.phonegap.Spotify"
+        },
+        "cordova-plugin-x-socialsharing": {
+            "PACKAGE_NAME": "com.phonegap.Spotify"
         }
     },
-    "dependent_plugins": {}
+    "dependent_plugins": {
+        "cordova-plugin-compat": {
+            "PACKAGE_NAME": "com.phonegap.Spotify"
+        },
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "com.phonegap.Spotify"
+        },
+        "es6-promise-plugin": {
+            "PACKAGE_NAME": "com.phonegap.Spotify"
+        }
+    }
 }

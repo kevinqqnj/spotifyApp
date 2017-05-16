@@ -16,16 +16,18 @@
     </f7-list>
     <!-- Search-through list -->
     <f7-list class="searchbar-found" media-list id="mediaList">
-      <f7-list-item swipeout v-for="(item, index) in searchTracks" :key="item.id" :link="'/media/'+index+'/'" :media="'<img src=' + item.album.images[2].url +' >'" :title="item.name" :subtitle="item.artists[0].name" :text="item.album.name">
+      <f7-list-item swipeout v-for="(item, index) in searchTracks" :key="item.id" :link="'/media/'+index+'/'" :media="'<img src=' + item.album.images[2].url +' >'" :title="item.name" :subtitle="'<span class=singerPrex>by </span>'+item.artists[0].name" :text="item.album.name">
         <f7-swipeout-actions right>
-          <f7-swipeout-button>
-            <a class="bg-orange favorite" :data-item="index"><i class="icon fa fa-star fa-2x"></i></a>
-            <a href="#" class="bg-blue share" :data-item="index"><i class="icon fa fa-share fa-2x"></i></a>
+          <f7-swipeout-button class="bg-orange">
+            <a class="bg-orange favorite" @click="addFavorite(index)"><i class="icon fa fa-star fa-2x"></i></a>
+          </f7-swipeout-button>
+          <f7-swipeout-button class="bg-blue">
+            <a href="#" class="bg-blue share" @click="share(index)"><i class="icon fa fa-share fa-2x"></i></a>
           </f7-swipeout-button>
         </f7-swipeout-actions>
         <f7-swipeout-actions left>
-          <f7-swipeout-button>
-            <a href="#" class="bg-green preview" :data-item="index"><i class="icon fa fa-play fa-2x"></i></a>
+          <f7-swipeout-button class="bg-green">
+            <a href="#" class="bg-green preview" @click="preview(index)"><i class="icon fa fa-play fa-2x"></i></a>
           </f7-swipeout-button>
         </f7-swipeout-actions>
       </f7-list-item>
@@ -39,13 +41,47 @@ export default {
   data() {
     return {
       searchTracks: [],
+      favoriteList: [],
     }
   },
   mounted() {
     window.Dom7(document).on('deviceready', () => {
       console.log("List Page is ready!");
       this.searchTracks = store.searchTracks;
+      this.favoriteList = store.favoriteList;
     });
+  },
+  methods: {
+    addFavorite(index) {
+      store.favoriteList.push(this.searchTracks[index]);
+      window.f7.alert(this.searchTracks[index].name + ' added to favorites!');
+    },
+    preview(index) {
+      var item = this.searchTracks[index];
+      window.f7.alert("Previewing " + item.name);
+      var media = new Media(item.preview_url, function() {
+        console.log("Media Success");
+      }, function(error) {
+        console.log("Media fail " + error)
+      }, null);
+      media.play();
+      setTimeout(function() {
+          media.stop()
+        }, 7000) //preview for 7 seconds
+    },
+    share(index) {
+      var item = this.searchTracks[index];
+      if (window.plugins && window.plugins.socialsharing) {
+        window.plugins.socialsharing.share("Hey! My new favorite song is " + item.name + " check it out!",
+          'Check this out', item.album.images[2].url, item.preview_url,
+          function() {
+            console.log("Share Success")
+          },
+          function(error) {
+            console.log("Share fail " + error)
+          });
+      } else window.f7.alert("Share plugin not found");
+    }
   }
 }
 </script>

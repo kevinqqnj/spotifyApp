@@ -94,6 +94,7 @@ export default {
   },
   methods: {
     onSubmit() {
+    	window.f7.showIndicator();
       if (this.term.length == 0) {
         window.f7.alert("请输入搜索内容");
       } else {
@@ -104,6 +105,7 @@ export default {
           url: url,
           success: function(resp) {
             // window.f7.alert("Number of results " + resp.tracks.items.length);
+            window.f7.hideIndicator();
             console.log(resp.tracks.items);
             store.searchTracks = resp.tracks.items;
             window.f7.mainView.router.load({
@@ -113,18 +115,21 @@ export default {
           },
           error: function(xhr) {
             console.log("Error on ajax call " + xhr);
+            window.f7.hideIndicator();
           }
         });
       }
     },
     onSetting() {
-      window.f7.alert('Show Settings');
+      window.f7.alert('TODO: Show Settings');
     },
     onFavorite() {
-      window.f7.alert('Show my favorites');
+    	var favoriteList = store.favoriteList;
+    	console.log(favoriteList);
+      window.f7.alert('TODO: Show my favorites');
     },
     onAbout() {
-      window.f7.alert('Show About');
+      window.f7.alert('TODO: Show About');
     }
   }
 }

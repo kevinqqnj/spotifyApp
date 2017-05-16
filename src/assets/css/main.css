@@ -8,6 +8,12 @@
 .statusbar-overlay {
     background: #000000;
 }
+
+span.singerPrex {
+  color: grey;
+  margin-left: 0.2rem;
+}
+
 i.icon.icon-spotify {
     width: 29px;
     height: 29px;
@@ -45,7 +51,7 @@ li.bottom {
 }
 
 img.detail {
-  max-width: 100%;
+  max-width: 90%;
 }
 
 .list-block .item-media {
