@@ -5,7 +5,8 @@
 #### Purpose:
 quickly learn F7+Vue.js
 
-#### Template:
+#### Install:
+1. Install template first:
 ```
 phonegap create spotifyApp --template cordova-template-framework7-vue-webpack
 cd spotifyApp
@@ -15,8 +16,7 @@ phonegap platform add browser android
 phonegap run browser -- --lr
 ```
 
-#### Install:
-Download this git, and replace /src/ directory, and /config.xml
+2. Download this git, then replace template's /src/ directory and /config.xml with git's.
 
 #### Intruduction:
 [Framework7+Vue.js Spotify播放器 - 实例详解](http://www.jianshu.com/p/976d34fcd77e)
