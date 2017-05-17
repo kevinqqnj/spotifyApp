@@ -94,12 +94,12 @@ export default {
   },
   methods: {
     onSubmit() {
-    	window.f7.showIndicator();
       if (this.term.length == 0) {
         window.f7.alert("请输入搜索内容");
       } else {
         var mediaType = "track";
-        var url = "https://api.spotify.com/v1/search?q=" + this.term + "&type=" + mediaType + "&limit=" + this.sliderVal;;
+        var url = "https://api.spotify.com/v1/search?q=" + this.term + "&type=" + mediaType + "&limit=" + this.sliderVal;
+        window.f7.showIndicator();
         window.Dom7.ajax({
           dataType: 'json',
           url: url,

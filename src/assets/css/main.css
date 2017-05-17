@@ -30,6 +30,14 @@ li.bottom {
 .rangeVal {
     padding-left: 5px;
 }
+
+.card-header {
+    width: 20rem;
+    height: 20rem;
+    background-size: cover;
+    background-position: center;
+  }
+
 .list-block {
     margin: 10px 0 !important;
 }

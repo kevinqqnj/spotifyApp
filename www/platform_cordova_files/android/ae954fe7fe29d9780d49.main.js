@@ -31077,6 +31077,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -31431,12 +31434,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
   methods: {
     onSubmit() {
-    	window.f7.showIndicator();
       if (this.term.length == 0) {
         window.f7.alert("请输入搜索内容");
       } else {
         var mediaType = "track";
-        var url = "https://api.spotify.com/v1/search?q=" + this.term + "&type=" + mediaType + "&limit=" + this.sliderVal;;
+        var url = "https://api.spotify.com/v1/search?q=" + this.term + "&type=" + mediaType + "&limit=" + this.sliderVal;
+        window.f7.showIndicator();
         window.Dom7.ajax({
           dataType: 'json',
           url: url,
@@ -31778,21 +31781,22 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "sliding": ""
     }
-  }, [_vm._v("Media Detail")]), _vm._v(" "), _c('f7-nav-right', [_c('f7-link', {
+  }, [_vm._v(_vm._s(_vm.searchTracks[_vm.mediaId].name))]), _vm._v(" "), _c('f7-nav-right', [_c('f7-link', {
     attrs: {
       "icon": "icon-bars",
       "open-panel": ""
     }
-  })], 1)], 1), _vm._v(" "), _c('f7-block-title', [_vm._v("Track Info")]), _vm._v(" "), _c('f7-list', [_c('f7-list-item', {
+  })], 1)], 1), _vm._v(" "), _c('f7-card', {
     attrs: {
-      "media": '<img src=' + _vm.searchTracks[_vm.mediaId].album.images[0].url + ' width=90% >',
-      "title": _vm.searchTracks[_vm.mediaId].name
+      "align": "center"
     }
-  }), _vm._v(" "), _c('f7-list-item', [_c('f7-label', [_vm._v("Type")]), _vm._v(" "), _c('f7-label', [_vm._v(_vm._s(_vm.searchTracks[_vm.mediaId].type))])], 1), _vm._v(" "), _c('f7-list-item', [_c('f7-label', [_vm._v("Artist")]), _vm._v(" "), _c('f7-label', [_vm._v(_vm._s(_vm.searchTracks[_vm.mediaId].artists[0].name))])], 1)], 1), _vm._v(" "), _c('f7-block-title', [_vm._v("Album Info")]), _vm._v(" "), _c('f7-list', {
+  }, [_c('div', {
+    staticClass: "card-header color-white no-border",
+    style: ('background-image:url(' + _vm.searchTracks[_vm.mediaId].album.images[0].url + ')'),
     attrs: {
-      "form": ""
+      "valign": "bottom"
     }
-  }, [_c('f7-list-item', {
+  }, [_vm._v(_vm._s(_vm.searchTracks[_vm.mediaId].name))])]), _vm._v(" "), _c('f7-list', [_c('f7-list-item', [_c('f7-label', [_vm._v("Artist")]), _vm._v(" "), _c('f7-label', [_vm._v(_vm._s(_vm.searchTracks[_vm.mediaId].artists[0].name))])], 1), _vm._v(" "), _c('f7-list-item', {
     attrs: {
       "title": ""
     }
@@ -31805,18 +31809,18 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "disabled": ""
     },
     model: {
-      value: (_vm.sliderVal),
+      value: (_vm.searchTracks[_vm.mediaId].popularity),
       callback: function($$v) {
-        _vm.sliderVal = $$v
+        _vm.searchTracks[_vm.mediaId].popularity = $$v
       },
-      expression: "sliderVal"
+      expression: "searchTracks[mediaId].popularity"
     }
   }), _vm._v(" "), _c('f7-input', {
     staticClass: "rangeVal",
     attrs: {
       "type": "text",
       "disabled": "",
-      "value": "90"
+      "value": _vm.searchTracks[_vm.mediaId].popularity
     }
   })], 1)], 1), _vm._v(" "), _c('f7-block-title', [_vm._v("Preview")]), _vm._v(" "), _c('f7-block', {
     attrs: {
@@ -31924,7 +31928,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       attrs: {
         "swipeout": "",
         "link": '/media/' + index + '/',
-        "media": '<img data-src=' + item.album.images[2].url + ' class=lazy>',
+        "media": '<img data-src=' + item.album.images[2].url + ' width=64px class=lazy>',
         "title": item.name,
         "subtitle": '<span class=singerPrex>by </span>' + item.artists[0].name,
         "text": item.album.name
